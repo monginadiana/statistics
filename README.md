@@ -87,12 +87,81 @@ For sample : Number in Sample (n), Mean (xˉ (X-bar)) and SD is (sigma (s))
 Statistical measures such as measures of central tendency (e.g. mean, median) and measures of spread (e.g. absolute deviation, standard deviation) are used to describe the distribution of a given collection of data points. We also use visualizations such as histograms and box plots to understand the shape of distributions.
 These descriptive statistics can apply to populations or samples. When they are applied to populations they are called population statistics, and when they are applied to samples they are called point estimates.
 
+### Normal Distibution
 
-PMD 
+In data science, one curve seems to appear almost everywhere — the Normal Distribution, also known as the Gaussian Distribution or the Bell Curve. 
 
-A Probability Mass Function (PMF) gives the probability that a discrete random variable takes on a specific value.
-It’s written as:
+It’s called normal because so many natural, social, and experimental phenomena follow this shape — heights, exam scores, blood pressure, errors in measurements, even IQs.
 
-f(x)=P(X=x)
+***So what is it?*** Normal distribution is a continuous probability distribution shaped like a bell curve — symmetrical around its mean. This curve is highest at the mean, and it tapers off symmetrically on both sides.
 
-That means — for every possible value of 𝑋X, we assign the probability that 𝑋 X equals that value.
+The shape depends only on two things: 
+
+A normal distribution is centered around its mean, so the distribution is not skewed. This doesn't mean that normal distributions cannot appear in different shapes and forms. How exactly the distribution behaves depends on the 2 key parameters, as specified before:
+
+- ***μ (mean)*** shifts the curve left or right and ***σ (standard deviation)*** controls how wide or narrow it is.(spread/width) (refer to image above)
+
+All of these distributions(normal.plt) have the following properties in common:
+
+- They are symmetric around the mean,
+- They have relatively higher densities of values at the center of the distribution and relatively lower density in the tails
+
+### Some More Characteristics of the Normal Distribution
+
+- Normal distributions are symmetric around their mean
+- The mean, median, and mode of a normal distribution are equal
+- The area under the bell curve is equal to 1.0
+- Normal distributions are denser in the center and less dense in the tails
+- Normal distributions are defined by two parameters, the mean (μ) and the standard deviation (σ).
+- Around 68% of the area of a normal distribution is within one standard deviation of the mean
+- Approximately 95% of the area of a normal distribution is within two standard deviations of the mean
+
+The last two characteristics refer to a rule called the ***empirical rule*** :- Refer to image(normal_sd)
+
+68% values of a normal distribution are within 1 standard deviation of the mean, 95% within 2 standard deviations and 99.7 % within 3 standard deviations. Normally distributed data is considered ideal for analysis due to this simplicity of description. Values in the extreme of tails (more than 3 standard deviations) can be considered "interesting events" as their probability of occurrence is very low. In other cases, you'll consider them as outliers due to noise or error of measurement. It all depends on your analysis question
+
+### Managing Uncertainty When Reporting Numbers(Inferential statistics)
+
+Managing numbers in inferential statistics involves a process of estimation and hypothesis testing, built upon key foundational concepts:
+
+1. Sampling: Since analyzing an entire population is often impossible, you select a sample, a representative subset of the population. The quality of your inference is directly tied to how well your sample represents the population (e.g., using random sampling).
+
+2. Estimation: Using sample statistics (like the sample mean, $\bar{x}$) to estimate unknown population parameters (like the population mean, $\mu$).
+
+- Point Estimate: A single best guess (e.g., the sample mean).
+- Interval Estimate (Confidence Interval): A range of values likely to contain the true population parameter.
+
+3. Hypothesis Testing: A formal procedure to check if a claim (hypothesis) about a population parameter is supported by the sample data. This often involves calculating a test statistic (like a $z$-score or $t$-score) and a p-value to decide whether to reject or fail to reject the null hypothesis ($H_0$).
+
+### Central Limit THeorem
+
+it's a key confidence booster when doing inferential statistics. It states that
+
+When you take many random samples from a population and calculate their means, the distribution of those sample means will be approximately normal (bell-shaped) — even if the population itself is not normal — as long as the sample size is large enough.
+
+The population can be weird or skewed. But the averages of many samples will form a normal curve.
+That’s why we can use the normal distribution to make inferences and build confidence intervals.
+
+### Sampling Error
+
+Sampling error quantifies the natural variability that arises when you use a sample instead of the whole population. It's the difference between a sample statistic  and the true population parameter. This error occurs because a sample is not a perfect emulation of the population.
+
+The standard deviation of the sampling distribution of the mean is called the Standard Error (SE). The CLT provides the formula for the Standard Error:$$SE = \frac{\sigma}{\sqrt{n}}$$where $\sigma$ is the population standard deviation and $n$ is the sample size.
+
+The CLT shows that as the sample size ($n$) increases, the Standard Error ($SE$) decreases. This means the sampling distribution gets narrower (less spread), and the sample mean becomes a more precise estimate of the population mean, thereby reducing sampling error.
+
+
+### Confidence Interval (CI)
+
+A Confidence Interval (CI) is an estimated range of values which is likely to include the true population parameter, with a specified degree of certainty (the confidence level).
+
+The $SE$ (derived from the CLT) is used to calculate the Margin of Error. For a 95% CI, if you repeated the sampling process many times, 95% of the constructed CIs would contain the true population mean.
+
+### T-distribution
+
+When you have a small sample (like 30 or 50 people) and don’t know the population’s true standard deviation,
+you use the t-distribution instead of the normal (z) distribution.
+
+The t-distribution has wider tails, meaning it gives you a slightly wider confidence interval to account for more uncertainty.
+
+As your sample gets larger, the t-distribution becomes almost the same as the normal one
